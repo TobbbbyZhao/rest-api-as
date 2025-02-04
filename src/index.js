@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 3001;
 
+const user = [];
 // Middleware to parse JSON bodies
 app.use(express.json());
 
@@ -10,9 +11,15 @@ app.use(express.json());
 // If necessary to add imports, please do so in the section above
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    console.log(user);
+    res.json(user);
 });
 
+app.post('/post', (req, res) => {
+    const newItem = req.body;
+    user.push(newItem);
+  res.status(201).json({ message: 'Item created', item: user });
+});
 // Do not touch the code below this comment
 // **************************************************************
 
