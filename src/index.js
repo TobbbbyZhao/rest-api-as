@@ -15,10 +15,13 @@ app.get('/', (req, res) => {
     res.json(user);
 });
 
-app.post('/post', (req, res) => {
+app.post('/users', (req, res) => {
     const newItem = req.body;
+    if (newItem.name == "" || newItem.email == "") {
+        res.status(400).json({message:'Bad Request'});
+    }
     user.push(newItem);
-  res.status(201).json({ message: 'Item created', item: user });
+  res.status(201).json({ message: 'Created' });
 });
 // Do not touch the code below this comment
 // **************************************************************
